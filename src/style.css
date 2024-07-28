@@ -235,7 +235,9 @@ svg{
 
 #task-container{
     display: grid;
-    grid-template-rows: 1fr 8fr;   
+    grid-template-rows: 1fr 8fr;
+    place-items: center;
+      
 }
 
 #task-title{
@@ -243,9 +245,8 @@ svg{
     justify-content: center;
     align-items: center;
     gap: clamp(20px, 20vw, 500px);
-    border-bottom: 1px solid black;
-    border-top:1px solid black ;
-    
+    width: 60%;
+    border-bottom: 1px solid black; 
 }
 
 #task-title>svg{
@@ -259,5 +260,9 @@ svg{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#tasks{
+    width: 60%;
 }
 
