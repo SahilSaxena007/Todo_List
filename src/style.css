@@ -207,7 +207,6 @@ svg{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    border: solid;
 }
 
 #main-title>svg{
@@ -235,10 +234,30 @@ svg{
 }
 
 #task-container{
-    border: solid;
+    display: grid;
+    grid-template-rows: 1fr 8fr;   
+}
+
+#task-title{
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    gap: clamp(20px, 20vw, 500px);
+    border-bottom: 1px solid black;
+    border-top:1px solid black ;
+    
+}
+
+#task-title>svg{
+    width: 30px;
+    height: 30px;
+}
+
+#task-title>p{
+    font-size: clamp(20px, 1.5vw, 35px);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
