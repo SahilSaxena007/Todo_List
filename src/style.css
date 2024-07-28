@@ -69,7 +69,7 @@ svg{
 }
 
 .menu {
-    border-radius: 8px;   
+    border-radius: 6px;   
     display: grid;
     grid-template-columns: 1fr 4fr; 
     padding-left: 8%; 
@@ -120,6 +120,9 @@ svg{
     /* background: linear-gradient(45.8deg, #8f3eeb 9.3%, hsl(192, 67%, 48%) 75.1%);   */
     background: linear-gradient(45.8deg, #8846d3 9.3%, #46b4d0 75.1%);    
 }
+
+/* SideBar Project Section */
+
 
 
 
