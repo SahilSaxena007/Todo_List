@@ -14,8 +14,9 @@
     grid-row: 1/2;
     background: linear-gradient(45.8deg, rgb(175, 104, 254) 9.3%, rgb(101, 223, 255) 75.1%); 
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    padding-left: 1.5%;
     gap: 20px;
 }
 
@@ -38,8 +39,10 @@ svg{
     grid-row: 2/3;
     background-color: #f5f5f5;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
     gap: 40px;
+    height: calc(100vh - 70px); /* Adjust this value based on your layout */
+    overflow-y: auto; /* Enable vertical scrolling on the sidebar */
 }
 
 .hide-sidebar{
@@ -124,7 +127,7 @@ svg{
 /* SideBar Project Section */
 #project-container{
     display: grid;
-    grid-template-rows: 1fr 7fr;
+    grid-template-rows: 1fr 8fr;
 }
 
 #project-title{
@@ -151,19 +154,27 @@ svg{
     flex-direction: column;
     justify-content: start;
     align-items: center;
-}
-
-.project-item:first-child{
+    gap: 2%;
+    padding-top: 3%;
+    padding-bottom: 3%;
     border-top: 1px solid black;
 }
+
+
+
+/* .project-item:first-child{
+    border-top: 1px solid black;
+} */
 
 .project-item{
     display: flex;
     width: 90%;
-    height: 70px;
-    justify-content: center;
+    height: 60px;
+    justify-content: space-around;
     align-items: center;
     gap: 2%;
+    background-color: white;
+    border-radius: 6px;
 
 }
 
@@ -181,12 +192,35 @@ svg{
 
 
 
+
+
 /* MAIN */
 #main{
     background-color: white;
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+    overflow: hidden;
+}
+
+#main-title{
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: solid;
+}
+
+#main-title>svg{
+    width: 40px;
+    height: 40px;
+}
+
+#main-title>p{
+    font-size: clamp(18px, 2vw, 25px);
+    font-weight: 600;
+    display: flex;
+    justify-self: center;
+    align-items: center;
 }
 
 .expand-main{
@@ -198,5 +232,13 @@ svg{
 .contract-main{
     grid-row: 2/3;
     grid-column: 2/3;
+}
+
+#task-container{
+    border: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
 }
 
