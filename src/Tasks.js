@@ -46,3 +46,5 @@ function Tasks(){
     return {addTask, editTask, deleteTask,changeTaskCompletion}
 }
 
+export default Tasks;
+
