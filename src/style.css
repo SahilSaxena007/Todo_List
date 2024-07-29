@@ -199,7 +199,8 @@ svg{
     background-color: white;
     display: grid;
     grid-template-rows: 1fr 7fr;
-    overflow: hidden;
+    height: calc(100vh - 70px); /* Adjust this value based on your layout */
+    overflow-y: auto; /* Enable vertical scrolling on the sidebar */
 }
 
 #main-title{
@@ -244,7 +245,7 @@ svg{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(20px, 20vw, 500px);
+    gap: clamp(20px, 50vw, 600px);
     width: 60%;
     border-bottom: 1px solid black; 
 }
@@ -264,5 +265,52 @@ svg{
 
 #tasks{
     width: 60%;
+}
+
+.task{
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr 3fr;
+    padding-left: 5%;
+    border-bottom: 1px solid lightgray;
+    height: 8%;
+
+}
+
+
+.checkbox {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    margin-bottom: 10px;
+    cursor: pointer;
+    place-self: center;
+}
+
+.task-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.due-date {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 10px;
+}
+
+.task-iconic {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.task-iconic img {
+    display: block; /* Make images block-level elements */
+    margin: 0 5px;  /* Optional: Add some horizontal spacing between icons */
+    height: 20px;   /* Adjust height if necessary */
 }
 
