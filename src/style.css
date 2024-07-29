@@ -3,6 +3,56 @@
     margin: 0;
 }
 
+/* Images */
+.checklist, .month-calendar, .day-calendar, .week-calendar, .important-calendar, .completed-calendar, .add-button, .tool-svg {
+    background-size: cover;        /* Ensures the SVG covers the entire div */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+    background-position: center;   /* Centers the image */ 
+    height: 100%;
+    width: 100%;
+}
+
+.checklist {
+    background-image: url('./SVG/checklist.svg');
+    
+}
+
+.month-calendar {
+    background-image: url('./SVG/calendar-month-outline.svg');
+}
+
+.day-calendar {
+    background-image: url('./SVG/calendar-today-outline.svg');
+}
+
+.week-calendar {
+    background-image: url('./SVG/calendar-week-outline.svg');
+}
+
+.important-calendar {
+    background-image: url('./SVG/calendar-star-outline.svg');
+}
+
+.completed-calendar {
+    background-image: url('./SVG/calendar-check-outline.svg');
+}
+
+.add-button {
+    background-image: url('./SVG/plus-circle-outline.svg');
+}
+
+.tool-svg {
+    background-image: url('./SVG/tools.svg');
+}
+
+.edit-svg{
+    background-image: url('./SVG/square-edit-outline.svg');
+}
+
+.delete-svg{
+    background-image: url('./SVG/trash-can-outline.svg');
+}
+
 .container {
     display: grid;
     grid-template-rows: 1fr 8fr;
@@ -27,6 +77,13 @@
     font-size: 2rem;
     font-weight: 600;
 }
+
+#header>.checklist{
+    height: 50px;
+    width: 50px;
+}
+
+
 
 svg{
     height: 50px;
@@ -86,7 +143,7 @@ svg{
     font-weight: 500;
 }
 
-.menu>svg{
+.menu>div{
     width: 80%;
     padding-top: 8%;
 }
@@ -99,7 +156,7 @@ svg{
     color: black;
 }
 
-.select>svg{
+.select>div{
     fill: black;
 }
 
@@ -135,6 +192,7 @@ svg{
     font-weight: 600;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-left: 5%;
     padding-right: 5%;
 }
@@ -145,8 +203,9 @@ svg{
     align-items: center;
 }
 
-#project-title>svg{
+#project-title>div{
     width: 30px;
+    height: 30px;
 }
 
 #projects{
@@ -178,8 +237,9 @@ svg{
 
 }
 
-.project-item>svg{
-    width: 30px;
+.project-item>div{
+    width: 40px;
+    height: 40px;
 }
 
 
@@ -210,7 +270,7 @@ svg{
     gap: 10px;
 }
 
-#main-title>svg{
+#main-title>div{
     width: 40px;
     height: 40px;
 }
@@ -250,7 +310,7 @@ svg{
     border-bottom: 1px solid black; 
 }
 
-#task-title>svg{
+#task-title>div{
     width: 30px;
     height: 30px;
 }

@@ -3,17 +3,6 @@ import './style.css'
 import {parse,format,getYear, set} from 'date-fns';
 
 
-function DOManipulation(){
-
-}
-
-function updateStorage(){
-
-}
-
-function main(){
-
-}
 
 
 
