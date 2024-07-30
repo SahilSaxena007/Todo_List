@@ -1,376 +1,397 @@
-*{
-    height: 100%;
-    margin: 0;
+* {
+  height: 100%;
+  margin: 0;
 }
 
 /* Images */
-.checklist, .month-calendar, .day-calendar, .week-calendar, .important-calendar, .completed-calendar, .add-button, .tool-svg {
-    background-size: cover;        /* Ensures the SVG covers the entire div */
-    background-repeat: no-repeat;  /* Prevents the image from repeating */
-    background-position: center;   /* Centers the image */ 
-    height: 100%;
-    width: 100%;
+.checklist,
+.month-calendar,
+.day-calendar,
+.week-calendar,
+.important-calendar,
+.completed-calendar,
+.add-button,
+.tool-svg,
+.edit-svg,
+.delete-svg,
+.info-svg {
+  background-size: cover; /* Ensures the SVG covers the entire div */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center; /* Centers the image */
+  height: 100%;
+  width: 100%;
 }
 
 .checklist {
-    background-image: url('./SVG/checklist.svg');
-    
+  background-image: url("./SVG/checklist.svg");
 }
 
 .month-calendar {
-    background-image: url('./SVG/calendar-month-outline.svg');
+  background-image: url("./SVG/calendar-month-outline.svg");
 }
 
 .day-calendar {
-    background-image: url('./SVG/calendar-today-outline.svg');
+  background-image: url("./SVG/calendar-today-outline.svg");
 }
 
 .week-calendar {
-    background-image: url('./SVG/calendar-week-outline.svg');
+  background-image: url("./SVG/calendar-week-outline.svg");
 }
 
 .important-calendar {
-    background-image: url('./SVG/calendar-star-outline.svg');
+  background-image: url("./SVG/calendar-star-outline.svg");
 }
 
 .completed-calendar {
-    background-image: url('./SVG/calendar-check-outline.svg');
+  background-image: url("./SVG/calendar-check-outline.svg");
 }
 
 .add-button {
-    background-image: url('./SVG/plus-circle-outline.svg');
+  background-image: url("./SVG/plus-circle-outline.svg");
 }
 
 .tool-svg {
-    background-image: url('./SVG/tools.svg');
+  background-image: url("./SVG/tools.svg");
 }
 
-.edit-svg{
-    background-image: url('./SVG/square-edit-outline.svg');
+.edit-svg {
+  background-image: url("./SVG/square-edit-outline.svg");
 }
 
-.delete-svg{
-    background-image: url('./SVG/trash-can-outline.svg');
+.delete-svg {
+  background-image: url("./SVG/trash-can-outline.svg");
+}
+
+.info-svg {
+  background-image: url("./SVG/info.svg");
 }
 
 .container {
-    display: grid;
-    grid-template-rows: 1fr 8fr;
-    grid-template-columns: 1fr 6fr;
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+  grid-template-columns: 1fr 6fr;
 }
 
-#header{
-    grid-column: 1/3;
-    grid-row: 1/2;
-    background: linear-gradient(45.8deg, rgb(175, 104, 254) 9.3%, rgb(101, 223, 255) 75.1%); 
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-left: 1.5%;
-    gap: 20px;
+#header {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  background: linear-gradient(
+    45.8deg,
+    rgb(175, 104, 254) 9.3%,
+    rgb(101, 223, 255) 75.1%
+  );
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 1.5%;
+  gap: 20px;
 }
 
-#header>p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: 600;
+#header > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-#header>.checklist{
-    height: 50px;
-    width: 50px;
+#header > .checklist {
+  height: 50px;
+  width: 50px;
 }
 
-
-
-svg{
-    height: 50px;
-    width: 50px;
+svg {
+  height: 50px;
+  width: 50px;
 }
 
 /* SideBar */
-#sidebar{
-    grid-column: 1/2;
-    grid-row: 2/3;
-    background-color: #f5f5f5;
-    display: grid;
-    grid-template-rows: 1fr 1.5fr;
-    gap: 40px;
-    height: calc(100vh - 70px); /* Adjust this value based on your layout */
-    overflow-y: auto; /* Enable vertical scrolling on the sidebar */
+#sidebar {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: #f5f5f5;
+  display: grid;
+  grid-template-rows: 1fr 1.5fr;
+  gap: 40px;
+  height: calc(100vh - 70px); /* Adjust this value based on your layout */
+  overflow-y: auto; /* Enable vertical scrolling on the sidebar */
 }
 
-.hide-sidebar{
-    display: none;
+.hide-sidebar {
+  display: none;
 }
 
-.show-sidebar{
-    display: block;
+.show-sidebar {
+  display: block;
 }
 
 /* #project-container{
     border: solid;
 } */
 
-
-#task-compilations{
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    gap: 4%;
-    padding-left: 6%;
-    padding-right: 6%;
-    padding-top: 18px;
+#task-compilations {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 4%;
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-top: 18px;
 }
 
-.menu, .selected, .select {
-    box-sizing: border-box;
+.menu,
+.selected,
+.select {
+  box-sizing: border-box;
 }
 
 .menu {
-    border-radius: 6px;   
-    display: grid;
-    grid-template-columns: 1fr 4fr; 
-    padding-left: 8%; 
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding-left: 8%;
 }
 
-.menu>p {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    font-size: 1vw;
-    font-weight: 500;
+.menu > p {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  font-size: 1vw;
+  font-weight: 500;
 }
 
-.menu>div{
-    width: 80%;
-    padding-top: 8%;
+.menu > div {
+  width: 40px;
+  padding-top: 8%;
 }
 
 .select {
-    background-color: white;
+  background-color: white;
 }
 
-.select>p{
-    color: black;
+.select > p {
+  color: black;
 }
 
-.select>div{
-    fill: black;
+.select > div {
+  fill: black;
 }
 
-.select:hover{
-    background: linear-gradient(45.8deg, rgb(175, 104, 254) 9.3%, rgb(101, 223, 255) 75.1%); 
+.select:hover {
+  background: linear-gradient(
+    45.8deg,
+    rgb(175, 104, 254) 9.3%,
+    rgb(101, 223, 255) 75.1%
+  );
 }
 
 .selected {
-    background: linear-gradient(45.8deg, rgb(175, 104, 254) 9.3%, rgb(101, 223, 255) 75.1%); 
+  background: linear-gradient(
+    45.8deg,
+    rgb(175, 104, 254) 9.3%,
+    rgb(101, 223, 255) 75.1%
+  );
 }
 
-.selected>p{
-    color: white;
+.selected > p {
+  color: white;
 }
 
-.selected>svg{
-    fill: white;
+.selected > svg {
+  fill: white;
 }
 
-.selected:hover{
-    /* background: linear-gradient(45.8deg, #8f3eeb 9.3%, hsl(192, 67%, 48%) 75.1%);   */
-    background: linear-gradient(45.8deg, #8846d3 9.3%, #46b4d0 75.1%);    
+.selected:hover {
+  /* background: linear-gradient(45.8deg, #8f3eeb 9.3%, hsl(192, 67%, 48%) 75.1%);   */
+  background: linear-gradient(45.8deg, #8846d3 9.3%, #46b4d0 75.1%);
 }
 
 /* SideBar Project Section */
-#project-container{
-    display: grid;
-    grid-template-rows: 1fr 8fr;
+#project-container {
+  display: grid;
+  grid-template-rows: 1fr 8fr;
 }
 
-#project-title{
-    font-size: 1.5rem;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 5%;
-    padding-right: 5%;
+#project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-#project-title>p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#project-title > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#project-title>div{
-    width: 30px;
-    height: 30px;
+#project-title > div {
+  width: 30px;
+  height: 30px;
 }
 
-#projects{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    gap: 2%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    border-top: 1px solid black;
+#projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-top: 1px solid black;
 }
-
-
 
 /* .project-item:first-child{
     border-top: 1px solid black;
 } */
 
-.project-item{
-    display: flex;
-    width: 90%;
-    height: 60px;
-    justify-content: space-around;
-    align-items: center;
-    gap: 2%;
-    background-color: white;
-    border-radius: 6px;
+/* .project-item {
+  display: flex;
+  width: 90%;
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2%;
+  background-color: white;
+  border-radius: 6px;
+} */
 
+.project-item {
+  display: grid;
+  grid-template-columns: 50px auto 50px 50px;
+  width: 90%;
+  height: 60px;
+  border-radius: 6px;
+  background-color: white;
+  place-items: center;
 }
 
-.project-item>div{
-    width: 40px;
-    height: 40px;
+.project-item > div {
+  width: 40px;
+  height: 40px;
 }
 
-
-.project-item>p{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.project-item > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis; */
 }
-
-
-
-
-
 
 /* MAIN */
-#main{
-    background-color: white;
-    display: grid;
-    grid-template-rows: 1fr 7fr;
-    height: calc(100vh - 70px); /* Adjust this value based on your layout */
-    overflow-y: auto; /* Enable vertical scrolling on the sidebar */
+#main {
+  background-color: white;
+  display: grid;
+  grid-template-rows: 1fr 7fr;
+  height: calc(100vh - 70px); /* Adjust this value based on your layout */
+  overflow-y: auto; /* Enable vertical scrolling on the sidebar */
 }
 
-#main-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+#main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-#main-title>div{
-    width: 40px;
-    height: 40px;
+#main-title > div {
+  width: 40px;
+  height: 40px;
 }
 
-#main-title>p{
-    font-size: clamp(18px, 2vw, 25px);
-    font-weight: 600;
-    display: flex;
-    justify-self: center;
-    align-items: center;
+#main-title > p {
+  font-size: clamp(18px, 2vw, 25px);
+  font-weight: 600;
+  display: flex;
+  justify-self: center;
+  align-items: center;
 }
 
-.expand-main{
-    grid-column: 2/3;
-    grid-row: 1/3;
-    
+.expand-main {
+  grid-column: 2/3;
+  grid-row: 1/3;
 }
 
-.contract-main{
-    grid-row: 2/3;
-    grid-column: 2/3;
+.contract-main {
+  grid-row: 2/3;
+  grid-column: 2/3;
 }
 
-#task-container{
-    display: grid;
-    grid-template-rows: 1fr 8fr;
-    place-items: center;
-      
+#task-container {
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+  place-items: center;
 }
 
-#task-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(20px, 50vw, 600px);
-    width: 60%;
-    border-bottom: 1px solid black; 
+#task-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 50vw, 600px);
+  width: 60%;
+  border-bottom: 1px solid black;
 }
 
-#task-title>div{
-    width: 30px;
-    height: 30px;
+#task-title > div {
+  width: 30px;
+  height: 30px;
 }
 
-#task-title>p{
-    font-size: clamp(20px, 1.5vw, 35px);
-    font-weight: 500;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#task-title > p {
+  font-size: clamp(20px, 1.5vw, 35px);
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#tasks{
-    width: 60%;
+#tasks {
+  width: 60%;
 }
 
-.task{
-    display: grid;
-    grid-template-columns: 1fr 5fr 2fr 3fr;
-    padding-left: 5%;
-    border-bottom: 1px solid lightgray;
-    height: 8%;
-
+.task {
+  display: grid;
+  grid-template-columns: 1fr 7fr 2fr 3fr;
+  padding-left: 5%;
+  border-bottom: 1px solid lightgray;
+  height: 8%;
 }
-
 
 .checkbox {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 2px solid #000;
-    margin-bottom: 10px;
-    cursor: pointer;
-    place-self: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin-bottom: 10px;
+  cursor: pointer;
+  place-self: center;
 }
 
 .task-title {
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 500;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .due-date {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    padding-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 10px;
 }
 
 .task-iconic {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.task-iconic img {
-    display: block; /* Make images block-level elements */
-    margin: 0 5px;  /* Optional: Add some horizontal spacing between icons */
-    height: 20px;   /* Adjust height if necessary */
+.task-iconic > div {
+  height: 30px;
+  width: 30px;
 }
-
