@@ -22,7 +22,7 @@ function Projects() {
             priority: "High",
             projectIndex: 0,
             taskIndex: 0,
-            completed: false,
+            completed: true,
           },
           {
             title: "Brush House",
@@ -38,7 +38,26 @@ function Projects() {
       {
         title: "Finish HomeWork",
         description: "Constructing the neural networks is remaining.",
-        tasks: [],
+        tasks: [
+          {
+            title: "Coding",
+            description: "",
+            date: "12-04-2024",
+            priority: "High",
+            projectIndex: 0,
+            taskIndex: 0,
+            completed: false,
+          },
+          {
+            title: "Physics",
+            description: "",
+            date: "12-04-2024",
+            priority: "Low",
+            projectIndex: 0,
+            taskIndex: 0,
+            completed: true,
+          },
+        ],
       },
     ];
   } else {

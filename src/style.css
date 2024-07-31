@@ -109,6 +109,7 @@ svg {
 #sidebar {
   grid-column: 1/2;
   grid-row: 2/3;
+  width: 300px;
   background-color: #f5f5f5;
   display: grid;
   grid-template-rows: 1fr 1.5fr;
@@ -155,7 +156,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: start;
-  font-size: 1vw;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -362,13 +363,20 @@ svg {
 }
 
 .checkbox {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 2px solid #000;
   margin-bottom: 10px;
   cursor: pointer;
   place-self: center;
+}
+
+.filled {
+  background-image: url("./SVG/tick-svgrepo-com.svg");
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .task-title {

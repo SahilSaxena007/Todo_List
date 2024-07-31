@@ -27,22 +27,8 @@ function Tasks() {
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
-  const addTask = (
-    title,
-    description,
-    date,
-    priority,
-    projectIndex,
-    taskIndex
-  ) => {
-    const new_task = Task(
-      title,
-      description,
-      date,
-      priority,
-      projectIndex,
-      taskIndex
-    );
+  const addTask = (title, description, date, priority, projectIndex) => {
+    const new_task = Task(title, description, date, priority, projectIndex);
     Projects.projects[projectIndex].tasks.push(new_task);
     saveProjects();
   };

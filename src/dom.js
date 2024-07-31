@@ -28,19 +28,21 @@ export const DOManipulation = () => {
     const tasks = Projects().projectList()[projectIndex].tasks;
     tasks.forEach((task, index) => {
       const div_container = document.createElement("div");
+      const filled = task.completed ? "filled" : "";
       div_container.classList.add("task");
       div_container.dataset.index = index;
+      div_container.dataset.projectIndex = projectIndex;
+
       div_container.innerHTML = `
-      <div class="checkbox"></div>
+      <div class="checkbox ${filled}" data-project-index="${projectIndex}" data-task-index="${index}"></div>
       <div class="task-title">${task.title}</div>
       <div class="due-date">${task.date}</div>
       <div class="task-iconic">
-                <div class='edit-svg'></div>
-                <div class='delete-svg'></div>
-                <div class='info-svg'></div>
+        <div class='edit-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
+        <div class='delete-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
+        <div class='info-svg'></div>
       </div>
-
-      `;
+    `;
       taskContainer.appendChild(div_container);
     });
     console.log(tasks);

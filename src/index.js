@@ -1,15 +1,25 @@
 import "./style.css";
 import { parse, format, getYear, set } from "date-fns";
 import { DOManipulation } from "./dom";
+import Projects from "./Project";
+// import {
+//   addProjectHandler,
+//   editProjectHandler,
+//   deleteProjectHandler,
+//   addTaskHandler,
+//   editTaskHandler,
+//   deleteTaskHandler,
+//   taskCompletionHandler,
+//   projectClickHandler,
+// } from "./handler";
 
-const domManipulationInstance = DOManipulation();
-domManipulationInstance.renderProjects();
-domManipulationInstance.renderTasks(0);
-// domManipulationInstance.updateMainTitle("Good Boy");
-/*const date = getYear(new Date());
-console.log(date)
+// const domManipulationInstance = DOManipulation();
+// domManipulationInstance.renderProjects();
+// domManipulationInstance.renderTasks(0);
 
-
-const currentDate = new Date();
-const formattedDate = format(currentDate,'yyyy-MM-dd');
-console.log(formattedDate);*/
+document.addEventListener("DOMContentLoaded", () => {
+  const domManipulationInstance = DOManipulation();
+  domManipulationInstance.renderProjects();
+  domManipulationInstance.renderTasks(0);
+  domManipulationInstance.updateMainTitle(Projects().projectList()[0].title);
+});
