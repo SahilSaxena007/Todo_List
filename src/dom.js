@@ -34,15 +34,15 @@ export const DOManipulation = () => {
       div_container.dataset.projectIndex = projectIndex;
 
       div_container.innerHTML = `
-      <div class="checkbox ${filled}" data-project-index="${projectIndex}" data-task-index="${index}"></div>
-      <div class="task-title">${task.title}</div>
-      <div class="due-date">${task.date}</div>
-      <div class="task-iconic">
-        <div class='edit-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
-        <div class='delete-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
-        <div class='info-svg'></div>
-      </div>
-    `;
+        <div class="checkbox ${filled}" data-project-index="${projectIndex}" data-task-index="${index}"></div>
+        <div class="task-title">${task.title}</div>
+        <div class="due-date">${task.date}</div>
+        <div class="task-iconic">
+          <div class='edit-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
+          <div class='delete-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
+          <div class='info-svg'></div>
+        </div>
+      `;
       taskContainer.appendChild(div_container);
     });
     console.log(tasks);
@@ -73,5 +73,5 @@ export const DOManipulation = () => {
   // Attach click event listener to the project container
   projectContainer.addEventListener("click", projectClickHandler);
 
-  return { renderProjects, renderTasks, updateMainTitle };
+  return { renderProjects, renderTasks, updateMainTitle, projectClickHandler };
 };

@@ -13,7 +13,7 @@ export const Handler = () => {
     }
   };
 
-  const addProjectHandler = (title, description) => {
+  const addProjectHandler = () => {
     const title = prompt("Enter project title:");
     const description = prompt("Enter project description:");
     projects.addProject(title, description);
@@ -21,10 +21,10 @@ export const Handler = () => {
     // checkAndRenderTask(projects.projectList().length);
   };
 
-  const editProjectHandler = (title, description, projectIndex) => {
+  const editProjectHandler = (projectIndex) => {
     const title = prompt("Enter project title:");
     const description = prompt("Enter project description:");
-    projects.editProject(title, description, index);
+    projects.editProject(title, description, projectIndex);
     DOManipulation().renderProjects();
     // checkAndRenderTask(projects.projectList().length);
   };

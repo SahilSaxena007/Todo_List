@@ -6,7 +6,7 @@ function Project(title, description) {
 }
 
 // DOM Manipulation is required
-function Projects() {
+export default function Projects() {
   let projects = [];
 
   if (localStorage.getItem("projects") === null) {
@@ -94,5 +94,3 @@ function Projects() {
 
   return { projects, projectList, addProject, editProject, deleteProject };
 }
-
-export default Projects;
