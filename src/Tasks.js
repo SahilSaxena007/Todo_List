@@ -1,6 +1,13 @@
 import Projects from "./Project";
 
-function Task(title, description, date, priority, projectIndex, taskIndex) {
+export default function Task(
+  title,
+  description,
+  date,
+  priority,
+  projectIndex,
+  taskIndex
+) {
   let completed = false;
 
   const setCompleted = () => {
@@ -21,8 +28,7 @@ function Task(title, description, date, priority, projectIndex, taskIndex) {
     completed,
   };
 }
-
-export default function Tasks() {
+function Tasks() {
   const saveProjects = () => {
     localStorage.setItem("projects", JSON.stringify(Projects().projectList()));
   };

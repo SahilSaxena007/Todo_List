@@ -1,4 +1,5 @@
 import "./style.css";
+import Task from "./Tasks";
 
 function Project(title, description) {
   const tasks = [];
@@ -92,5 +93,56 @@ export default function Projects() {
     }
   };
 
-  return { projects, projectList, addProject, editProject, deleteProject };
+  const addTask = (title, description, date, priority, projectIndex) => {
+    const new_task = Task(title, description, date, priority, projectIndex);
+    const currentProject = projects[projectIndex];
+
+    if (currentProject) {
+      projects[projectIndex].tasks.push(new_task);
+      saveProjects();
+      console.log("After adding task: ", projects[projectIndex].tasks);
+    } else {
+      console.error("Invalid project index");
+    }
+  };
+
+  const editTask = (
+    title,
+    description,
+    date,
+    priority,
+    projectIndex,
+    taskIndex
+  ) => {
+    projects[projectIndex].tasks[taskIndex].title = title;
+    projects[projectIndex].tasks[taskIndex].description = description;
+    projects[projectIndex].tasks[taskIndex].date = date;
+    projects[projectIndex].tasks[taskIndex].priority = [priority];
+    saveProjects();
+  };
+
+  const deleteTask = (projectIndex, taskIndex) => {
+    if (projectIndex >= 0) {
+      projects[projectIndex].tasks.splice(taskIndex, 1);
+      saveProjects();
+    }
+  };
+
+  const changeTaskCompletion = (projectIndex, taskIndex) => {
+    const task = projects[projectIndex].tasks[taskIndex];
+    task.completed = !task.completed;
+    saveProjects();
+  };
+
+  return {
+    projects,
+    projectList,
+    addProject,
+    editProject,
+    deleteProject,
+    editTask,
+    addTask,
+    deleteTask,
+    changeTaskCompletion,
+  };
 }

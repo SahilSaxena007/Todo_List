@@ -1,7 +1,6 @@
 import { ta } from "date-fns/locale";
 import { DOManipulation } from "./dom";
 import Projects from "./Project";
-import Tasks from "./Tasks";
 
 export const Handler = () => {
   const checkAndRenderTask = (length) => {
@@ -49,7 +48,7 @@ export const Handler = () => {
       "Before adding task - Project: ",
       Projects().projectList()[projectIndex]
     );
-    Tasks().addTask(title, description, date, priority, projectIndex);
+    Projects().addTask(title, description, date, priority, projectIndex);
     console.log(
       "After adding task - Project: ",
       Projects().projectList()[projectIndex]
@@ -64,7 +63,7 @@ export const Handler = () => {
     const description = prompt("What is the Description: ");
     const date = prompt("The date (dd-MM-yyyy): ");
     const priority = prompt("What is the Priority: ");
-    Tasks().editTask(
+    Projects().editTask(
       title,
       description,
       date,
@@ -76,12 +75,12 @@ export const Handler = () => {
   };
 
   const deleteTaskHandler = (projectIndex, taskIndex) => {
-    Tasks().deleteTask(projectIndex, taskIndex);
+    Projects().deleteTask(projectIndex, taskIndex);
     DOManipulation().renderTasks(projectIndex);
   };
 
   const taskCompletionHandler = (projectIndex, taskIndex) => {
-    Tasks().changeTaskCompletion(projectIndex, taskIndex);
+    Projects().changeTaskCompletion(projectIndex, taskIndex);
     DOManipulation().renderTasks(projectIndex);
   };
 
