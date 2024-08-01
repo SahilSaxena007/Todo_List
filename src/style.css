@@ -269,6 +269,17 @@ svg {
   place-items: center;
 }
 
+/* Increase size on hover */
+.project-item:hover {
+  transform: scale(1.05); /* Slightly increase size */
+  transition: transform 0.3s ease; /* Smooth transition */
+  background: linear-gradient(
+    45.8deg,
+    rgb(175, 104, 254) 9.3%,
+    rgb(101, 223, 255) 75.1%
+  );
+}
+
 .project-item > div {
   width: 40px;
   height: 40px;
@@ -332,8 +343,8 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: clamp(20px, 50vw, 600px);
   width: 60%;
+  gap: 5%;
   border-bottom: 1px solid black;
 }
 
