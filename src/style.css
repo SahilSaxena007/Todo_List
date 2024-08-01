@@ -285,6 +285,11 @@ svg {
   height: 40px;
 }
 
+.project-item > div:hover {
+  transform: scale(1.3); /* Slightly increase size */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
 .project-item > p {
   display: flex;
   justify-content: center;
@@ -373,6 +378,19 @@ svg {
   height: 8%;
 }
 
+.checkbox.low {
+  /* background-color: hsl(120, 72%, 89%); */
+  border: 2px solid #b7f5bd;
+}
+
+.checkbox.medium {
+  border: 2px solid #f5f5b7;
+}
+
+.checkbox.high {
+  border: 2px solid #ee9999;
+}
+
 .checkbox {
   width: 18px;
   height: 18px;
@@ -413,4 +431,11 @@ svg {
 .task-iconic > div {
   height: 30px;
   width: 30px;
+}
+
+.task-iconic > div:hover,
+#task-title > div:hover,
+#project-title > div:hover {
+  transform: scale(1.3); /* Slightly increase size */
+  transition: transform 0.3s ease; /* Smooth transition */
 }
