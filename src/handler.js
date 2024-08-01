@@ -4,9 +4,6 @@ import Projects from "./Project";
 import Tasks from "./Tasks";
 
 export const Handler = () => {
-  const projects = Projects();
-  const tasks = Tasks();
-
   const checkAndRenderTask = (length) => {
     if (length !== 0) {
       DOManipulation().renderTasks(length - 1);
@@ -16,7 +13,9 @@ export const Handler = () => {
   const addProjectHandler = () => {
     const title = prompt("Enter project title:");
     const description = prompt("Enter project description:");
-    projects.addProject(title, description);
+    console.log("before add: ", Projects().projectList());
+    Projects().addProject(title, description);
+    console.log("after add: ", Projects().projectList());
     DOManipulation().renderProjects();
     // checkAndRenderTask(projects.projectList().length);
   };
@@ -24,13 +23,17 @@ export const Handler = () => {
   const editProjectHandler = (projectIndex) => {
     const title = prompt("Enter project title:");
     const description = prompt("Enter project description:");
-    projects.editProject(title, description, projectIndex);
+    console.log("before edit: ", Projects().projectList());
+    Projects().editProject(title, description, projectIndex);
+    console.log("after edit: ", Projects().projectList());
     DOManipulation().renderProjects();
     // checkAndRenderTask(projects.projectList().length);
   };
 
   const deleteProjectHandler = (index) => {
-    projects.deleteProject(index);
+    console.log("before delete: ", Projects().projectList());
+    Projects().deleteProject(index);
+    console.log("after delete: ", Projects().projectList());
     DOManipulation().renderProjects();
     // checkAndRenderTask(projects.projectList().length);
   };
@@ -40,7 +43,19 @@ export const Handler = () => {
     const description = prompt("What is the Description: ");
     const date = prompt("The date (dd-MM-yyyy): ");
     const priority = prompt("What is the Priority: ");
-    tasks.addTask(title, description, date, priority, projectIndex);
+
+    // Log the projects list before adding
+    console.log(
+      "Before adding task - Project: ",
+      Projects().projectList()[projectIndex]
+    );
+    Tasks().addTask(title, description, date, priority, projectIndex);
+    console.log(
+      "After adding task - Project: ",
+      Projects().projectList()[projectIndex]
+    );
+
+    // Re-render the tasks for the given project index
     DOManipulation().renderTasks(projectIndex);
   };
 
@@ -49,17 +64,24 @@ export const Handler = () => {
     const description = prompt("What is the Description: ");
     const date = prompt("The date (dd-MM-yyyy): ");
     const priority = prompt("What is the Priority: ");
-    tasks.editTask(title, description, date, priority, projectIndex, taskIndex);
+    Tasks().editTask(
+      title,
+      description,
+      date,
+      priority,
+      projectIndex,
+      taskIndex
+    );
     DOManipulation().renderTasks(projectIndex);
   };
 
   const deleteTaskHandler = (projectIndex, taskIndex) => {
-    tasks.deleteTask(projectIndex, taskIndex);
+    Tasks().deleteTask(projectIndex, taskIndex);
     DOManipulation().renderTasks(projectIndex);
   };
 
   const taskCompletionHandler = (projectIndex, taskIndex) => {
-    tasks.changeTaskCompletion(projectIndex, taskIndex);
+    Tasks().changeTaskCompletion(projectIndex, taskIndex);
     DOManipulation().renderTasks(projectIndex);
   };
 

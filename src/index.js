@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", () => {
       if (currentProjectIndex !== null) {
         Handler().addTaskHandler(currentProjectIndex);
+        console.log("current project index:", currentProjectIndex);
       } else {
         console.warn("No project selected to add a task.");
       }
