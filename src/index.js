@@ -4,11 +4,7 @@ import { DOManipulation } from "./dom";
 import Projects from "./Project";
 import { Handler } from "./handler";
 import { startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
-// import { format } from "date-fns";
 
-// const domManipulationInstance = DOManipulation();
-// domManipulationInstance.renderProjects();
-// domManipulationInstance.renderTasks(0);
 const taskListRenderer = (taskChoice) => {
   const projects = Projects().projectList();
   const compiledTaskList = [];
@@ -16,7 +12,6 @@ const taskListRenderer = (taskChoice) => {
   const today = new Date();
   const formattedToday = format(today, "dd-MM-yyyy");
 
-  // Calculate the start and end dates for the upcoming week
   const nextWeekStart = startOfWeek(add(today, { weeks: 1 }), {
     weekStartsOn: 1,
   });
@@ -26,7 +21,6 @@ const taskListRenderer = (taskChoice) => {
     for (let task of project.tasks) {
       const taskDate = new Date(task.date);
       const formattedTaskDate = format(taskDate, "dd-MM-yyyy");
-      // console.log("ffg", formattedTaskDate);
       if (taskChoice === "all-task") {
         compiledTaskList.push(task);
       } else if (taskChoice === "today-task") {
@@ -62,15 +56,28 @@ const taskListRenderer = (taskChoice) => {
 document.addEventListener("DOMContentLoaded", () => {
   const domManipulationInstance = DOManipulation();
   let currentProjectIndex = null;
+  let currentSelection = "project";
 
-  if (Projects().projectList().length > 0) {
-    domManipulationInstance.renderProjects();
-    domManipulationInstance.renderTasks(0);
-    domManipulationInstance.updateMainTitle(Projects().projectList()[0].title);
-    currentProjectIndex = 0;
-  } else {
-    console.warn("No projects available to render.");
-  }
+  const initializeApp = () => {
+    if (Projects().projectList().length > 0) {
+      domManipulationInstance.renderProjects();
+      domManipulationInstance.renderTasks(0);
+      domManipulationInstance.updateMainTitle(
+        Projects().projectList()[0].title
+      );
+      currentProjectIndex = 0;
+
+      // Add .selected class to the first project
+      const firstProject = document.querySelector(".project-item");
+      if (firstProject) {
+        firstProject.classList.add("selected");
+      }
+    } else {
+      console.warn("No projects available to render.");
+    }
+  };
+
+  initializeApp();
 
   document
     .getElementById("project-title")
@@ -87,13 +94,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+  const unselectAllItems = () => {
+    document.querySelectorAll(".project-item, .menu").forEach((item) => {
+      item.classList.remove("selected");
+    });
+  };
+
   document.getElementById("projects").addEventListener("click", (event) => {
     const target = event.target;
     const projectItem = target.closest(".project-item");
 
     if (!projectItem) return;
 
-    currentProjectIndex = projectItem.dataset.index;
+    unselectAllItems();
+    projectItem.classList.add("selected");
+    currentSelection = "project";
+    currentProjectIndex = parseInt(projectItem.dataset.index);
 
     if (target.classList.contains("edit-svg")) {
       Handler().editProjectHandler(currentProjectIndex);
@@ -118,12 +134,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document.querySelectorAll(".menu").forEach((task) => {
-    task.addEventListener("click", (event) => {
+  document.querySelectorAll(".menu").forEach((menuItem) => {
+    menuItem.addEventListener("click", (event) => {
       const target = event.target.closest(".menu");
-      let chosenList = [];
       if (target) {
+        unselectAllItems();
+        target.classList.add("selected");
+        currentSelection = "menu";
+        currentProjectIndex = null;
+
         const list = target.classList;
+        let chosenList = [];
         if (list.contains("all-task")) {
           chosenList = taskListRenderer("all-task");
         } else if (list.contains("today-task")) {
@@ -135,6 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (list.contains("completed-task")) {
           chosenList = taskListRenderer("completed-task");
         }
+
+        domManipulationInstance.renderTaskList(chosenList);
+        domManipulationInstance.updateMainTitle(
+          target.querySelector("p").textContent
+        );
       } else {
         console.warn("No valid menu item was clicked.");
       }
