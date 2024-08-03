@@ -19,7 +19,7 @@ export default function Projects() {
           {
             title: "Brush House",
             description: "",
-            date: "12-04-2024",
+            date: "08-03-2024",
             priority: "high",
             projectIndex: 0,
             taskIndex: 0,
@@ -28,7 +28,7 @@ export default function Projects() {
           {
             title: "Brush House",
             description: "",
-            date: "12-04-2024",
+            date: "08-11-2024",
             priority: "low",
             projectIndex: 0,
             taskIndex: 0,
