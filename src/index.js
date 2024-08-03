@@ -121,19 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".menu").forEach((task) => {
     task.addEventListener("click", (event) => {
       const target = event.target.closest(".menu");
+      let chosenList = [];
       if (target) {
         const list = target.classList;
         if (list.contains("all-task")) {
-          taskListRenderer("all-task");
-          console.log(list);
+          chosenList = taskListRenderer("all-task");
         } else if (list.contains("today-task")) {
-          taskListRenderer("today-task");
+          chosenList = taskListRenderer("today-task");
         } else if (list.contains("week-task")) {
-          taskListRenderer("week-task");
+          chosenList = taskListRenderer("week-task");
         } else if (list.contains("important-task")) {
-          taskListRenderer("important-task");
+          chosenList = taskListRenderer("important-task");
         } else if (list.contains("completed-task")) {
-          taskListRenderer("completed-task");
+          chosenList = taskListRenderer("completed-task");
         }
       } else {
         console.warn("No valid menu item was clicked.");
