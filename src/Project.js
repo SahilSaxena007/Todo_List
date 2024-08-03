@@ -1,9 +1,9 @@
 import "./style.css";
 import Task from "./Tasks";
 
-function Project(title, description) {
+function Project(title) {
   const tasks = [];
-  return { title, description, tasks };
+  return { title, tasks };
 }
 
 // DOM Manipulation is required
@@ -20,7 +20,7 @@ export default function Projects() {
             title: "Brush House",
             description: "",
             date: "12-04-2024",
-            priority: "High",
+            priority: "high",
             projectIndex: 0,
             taskIndex: 0,
             completed: true,
@@ -29,7 +29,7 @@ export default function Projects() {
             title: "Brush House",
             description: "",
             date: "12-04-2024",
-            priority: "High",
+            priority: "low",
             projectIndex: 0,
             taskIndex: 0,
             completed: false,
@@ -64,6 +64,27 @@ export default function Projects() {
   } else {
     const projectitem = JSON.parse(localStorage.getItem("projects"));
     projects = projectitem;
+
+    // If projects array is empty, add a default project or show a message
+    if (projects.length === 0) {
+      projects = [
+        {
+          title: "Default Project",
+          description: "This is a default project to get started.",
+          tasks: [
+            {
+              title: "This project appears when you have no projects left",
+              description: "This is a default task.",
+              date: "12-04-2024",
+              priority: "medium",
+              projectIndex: 0,
+              taskIndex: 0,
+              completed: false,
+            },
+          ],
+        },
+      ];
+    }
   }
 
   const saveProjects = () => {
@@ -74,15 +95,14 @@ export default function Projects() {
     return projects;
   };
 
-  const addProject = (title, description) => {
-    const item = Project(title, description);
+  const addProject = (title) => {
+    const item = Project(title);
     projects.push(item);
     saveProjects();
   };
 
-  const editProject = (title, description, index) => {
+  const editProject = (title, index) => {
     projects[index].title = title;
-    projects[index].description = description;
     saveProjects();
   };
 

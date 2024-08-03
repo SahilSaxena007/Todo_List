@@ -30,12 +30,11 @@ export const DOManipulation = () => {
       const div_container = document.createElement("div");
       const filled = task.completed ? "filled" : "";
       div_container.classList.add("task");
-      // div_container.classList.add("yellow");
       div_container.dataset.index = index;
       div_container.dataset.projectIndex = projectIndex;
 
       div_container.innerHTML = `
-        <div class="checkbox ${filled} high" data-project-index="${projectIndex}" data-task-index="${index}"></div>
+        <div class="checkbox ${filled} ${task.priority}" data-project-index="${projectIndex}" data-task-index="${index}"></div>
         <div class="task-title">${task.title}</div>
         <div class="due-date">${task.date}</div>
         <div class="task-iconic">
@@ -66,6 +65,14 @@ export const DOManipulation = () => {
     }
   };
 
+  const clearTasks = () => {
+    taskContainer.innerHTML = "";
+  };
+
+  const clearMainTitle = () => {
+    mainTitle.textContent = "Add Project";
+  };
+
   // Event Listeners
   document.addEventListener("DOMContentLoaded", () => {
     renderProjects();
@@ -74,5 +81,12 @@ export const DOManipulation = () => {
   // Attach click event listener to the project container
   projectContainer.addEventListener("click", projectClickHandler);
 
-  return { renderProjects, renderTasks, updateMainTitle, projectClickHandler };
+  return {
+    renderProjects,
+    renderTasks,
+    updateMainTitle,
+    projectClickHandler,
+    clearTasks,
+    clearMainTitle,
+  };
 };

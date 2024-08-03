@@ -11,30 +11,32 @@ export const Handler = () => {
 
   const addProjectHandler = () => {
     const title = prompt("Enter project title:");
-    const description = prompt("Enter project description:");
-    console.log("before add: ", Projects().projectList());
-    Projects().addProject(title, description);
-    console.log("after add: ", Projects().projectList());
+    Projects().addProject(title);
     DOManipulation().renderProjects();
-    // checkAndRenderTask(projects.projectList().length);
   };
 
   const editProjectHandler = (projectIndex) => {
     const title = prompt("Enter project title:");
-    const description = prompt("Enter project description:");
-    console.log("before edit: ", Projects().projectList());
-    Projects().editProject(title, description, projectIndex);
-    console.log("after edit: ", Projects().projectList());
+    Projects().editProject(title, projectIndex);
     DOManipulation().renderProjects();
-    // checkAndRenderTask(projects.projectList().length);
   };
 
   const deleteProjectHandler = (index) => {
-    console.log("before delete: ", Projects().projectList());
     Projects().deleteProject(index);
-    console.log("after delete: ", Projects().projectList());
     DOManipulation().renderProjects();
-    // checkAndRenderTask(projects.projectList().length);
+
+    // Check if there are remaining projects
+    const remainingProjects = Projects().projectList();
+
+    if (remainingProjects.length > 0) {
+      // Render tasks for the first remaining project
+      DOManipulation().renderTasks(0);
+      DOManipulation().updateMainTitle(remainingProjects[0].title);
+    } else {
+      // Clear the task container and main title if no projects remain
+      DOManipulation().clearTasks();
+      DOManipulation().clearMainTitle();
+    }
   };
 
   const addTaskHandler = (projectIndex) => {
