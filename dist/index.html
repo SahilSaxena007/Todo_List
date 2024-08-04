@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <div class="container">
+      <div id="header">
+        <div class="checklist"></div>
+        <p>Todo List</p>
+      </div>
+
+      <!-- Side Bar Class Names hide-sidebar -->
+      <div id="sidebar" class="show-sidebar">
+        <div id="task-compilations">
+          <div class="menu select all-task">
+            <div class="month-calendar"></div>
+            <p>All</p>
+          </div>
+          <div class="menu select today-task">
+            <div class="day-calendar"></div>
+            <p>Today</p>
+          </div>
+          <div class="menu select week-task">
+            <div class="week-calendar"></div>
+            <p>Week</p>
+          </div>
+          <div class="menu select important-task">
+            <div class="important-calendar"></div>
+            <p>Important</p>
+          </div>
+          <div class="menu select completed-task">
+            <div class="completed-calendar"></div>
+            <p>Completed</p>
+          </div>
+        </div>
+        <div id="project-container">
+          <div id="project-title">
+            <p>Projects</p>
+            <div class="add-button"></div>
+          </div>
+          <div id="projects">
+            <!-- Add ProjectName as the class name -->
+            <div class="project-item">
+              <div class="tool-svg"></div>
+              <p>Project Name</p>
+              <div class="edit-svg"></div>
+              <div class="delete-svg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Bar Class Name: expand-main contract-main  -->
+      <div id="main" class="contract-main">
+        <div id="main-title">
+          <div class=""></div>
+          <p></p>
+        </div>
+        <div id="task-container">
+          <div id="task-title">
+            <p>Tasks</p>
+            <div class="add-button"></div>
+          </div>
+
+          <div id="tasks">
+            <div class="task">
+              <div class="checkbox"></div>
+              <div class="task-title">Task 1</div>
+              <div class="due-date">Due Date 1</div>
+              <div class="task-iconic">
+                <img src="icon1.png" alt="Icon 1" />
+                <img src="icon2.png" alt="Icon 2" />
+                <img src="icon2.png" alt="Icon 2" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="add-project-dialog" class="dialog">
+      <div class="dialog-content">
+        <h2>Add New Project</h2>
+        <!-- <label for="project-name">Project Name:</label> -->
+        <input
+          type="text"
+          id="project-name"
+          placeholder="Enter project name"
+          minlength="1"
+        />
+        <div class="dialog-buttons">
+          <button id="cancel-project">Cancel</button>
+          <button id="confirm-project">Add Project</button>
+        </div>
+      </div>
+    </div>
+    <div id="add-task-dialog" class="dialog-task">
+      <div class="dialog-content-task">
+        <h2>Add New Task</h2>
+        <input type="text" id="task-name" placeholder="Enter task name" />
+        <textarea
+          id="task-description"
+          placeholder="Enter task description"
+        ></textarea>
+        <div class="input-group">
+          <input type="date" id="task-date" />
+          <select id="task-priority">
+            <option value="" disabled selected>Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="dialog-buttons-task">
+          <button id="cancel-task">Cancel</button>
+          <button id="confirm-task">Add Task</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
