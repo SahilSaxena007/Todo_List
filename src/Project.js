@@ -42,7 +42,7 @@ export default function Projects() {
             description:
               "The top left menu bar allows you to see the tasks based on time and importance",
             date: formattedToday,
-            priority: "medium",
+            priority: "low",
             projectIndex: 0,
             taskIndex: 0,
             completed: false,
