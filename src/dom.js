@@ -50,20 +50,21 @@ export const DOManipulation = () => {
 
   const renderTaskList = (tasks) => {
     taskContainer.innerHTML = "";
-    tasks.forEach((task, index) => {
+    tasks.forEach((task) => {
       const div_container = document.createElement("div");
-      const filled = task.completed ? "filled" : "";
+      const filled = task[0].completed ? "filled" : "";
       div_container.classList.add("task");
-      div_container.dataset.index = index;
-      div_container.dataset.projectIndex = task.projectIndex;
+      div_container.dataset.index = task[2];
+      div_container.dataset.projectIndex = task[1];
+      // console.log(task[1], "ff", task[2]);
 
       div_container.innerHTML = `
-        <div class="checkbox ${filled} ${task.priority}" data-project-index="${task.projectIndex}" data-task-index="${index}"></div>
-        <div class="task-title">${task.title}</div>
-        <div class="due-date">${task.date}</div>
+        <div class="checkbox ${filled} ${task[0].priority}" data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
+        <div class="task-title">${task[0].title}</div>
+        <div class="due-date">${task[0].date}</div>
         <div class="task-iconic">
-          <div class='edit-svg' data-project-index="${task.projectIndex}" data-task-index="${index}"></div>
-          <div class='delete-svg' data-project-index="${task.projectIndex}" data-task-index="${index}"></div>
+          <div class='edit-svg' data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
+          <div class='delete-svg' data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
           <div class='info-svg'></div>
         </div>
       `;

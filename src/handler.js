@@ -65,25 +65,46 @@ export const Handler = () => {
     const description = prompt("What is the Description: ");
     const date = prompt("The date (dd-MM-yyyy): ");
     const priority = prompt("What is the Priority: ");
-    Projects().editTask(
-      title,
-      description,
-      date,
-      priority,
-      projectIndex,
-      taskIndex
-    );
-    DOManipulation().renderTasks(projectIndex);
+    try {
+      Projects().editTask(
+        title,
+        description,
+        date,
+        priority,
+        projectIndex,
+        taskIndex
+      );
+      updateView(projectIndex);
+    } catch (error) {}
   };
 
   const deleteTaskHandler = (projectIndex, taskIndex) => {
-    Projects().deleteTask(projectIndex, taskIndex);
-    DOManipulation().renderTasks(projectIndex);
+    try {
+      Projects().deleteTask(projectIndex, taskIndex);
+      updateView(projectIndex);
+    } catch (error) {
+      console.error("Error changing task completion:", error);
+    }
   };
 
   const taskCompletionHandler = (projectIndex, taskIndex) => {
-    Projects().changeTaskCompletion(projectIndex, taskIndex);
-    DOManipulation().renderTasks(projectIndex);
+    try {
+      Projects().changeTaskCompletion(projectIndex, taskIndex);
+      updateView(projectIndex);
+    } catch (error) {
+      console.error("Error changing task completion:", error);
+    }
+  };
+
+  const updateView = (projectIndex) => {
+    const currentView = document.querySelector(".menu.selected");
+    if (currentView) {
+      // We're in a menu view, re-render the current view
+      currentView.click();
+    } else {
+      // We're in a project view, re-render the tasks for this project
+      DOManipulation().renderTasks(projectIndex);
+    }
   };
 
   return {

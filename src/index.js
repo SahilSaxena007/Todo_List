@@ -17,33 +17,32 @@ const taskListRenderer = (taskChoice) => {
   });
   const nextWeekEnd = endOfWeek(add(today, { weeks: 1 }), { weekStartsOn: 1 });
 
-  for (let project of projects) {
-    for (let task of project.tasks) {
-      const taskDate = new Date(task.date);
+  for (let i = 0; i < projects.length; i++) {
+    for (let j = 0; j < projects[i].tasks.length; j++) {
+      const taskDate = new Date(projects[i].tasks[j].date);
       const formattedTaskDate = format(taskDate, "dd-MM-yyyy");
       if (taskChoice === "all-task") {
-        compiledTaskList.push(task);
+        compiledTaskList.push([projects[i].tasks[j], i, j]);
       } else if (taskChoice === "today-task") {
         if (formattedTaskDate === formattedToday) {
-          compiledTaskList.push(task);
+          compiledTaskList.push([projects[i].tasks[j], i, j]);
         }
       } else if (taskChoice === "week-task") {
         if (
           isWithinInterval(taskDate, {
             start: nextWeekStart,
             end: nextWeekEnd,
-          }) &&
-          !task.completed
+          })
         ) {
-          compiledTaskList.push(task);
+          compiledTaskList.push([projects[i].tasks[j], i, j]);
         }
       } else if (taskChoice === "important-task") {
-        if (task.priority === "high") {
-          compiledTaskList.push(task);
+        if (projects[i].tasks[j].priority === "high") {
+          compiledTaskList.push([projects[i].tasks[j], i, j]);
         }
       } else if (taskChoice === "completed-task") {
-        if (task.completed) {
-          compiledTaskList.push(task);
+        if (projects[i].tasks[j].completed) {
+          compiledTaskList.push([projects[i].tasks[j], i, j]);
         }
       }
     }
