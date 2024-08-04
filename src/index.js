@@ -56,6 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const domManipulationInstance = DOManipulation();
   let currentProjectIndex = null;
   let currentSelection = "project";
+  const addProjectButton = document.querySelector("#project-title .add-button");
+  const addProjectDialog = document.getElementById("add-project-dialog");
+  const projectNameInput = document.getElementById("project-name");
+  const cancelProjectButton = document.getElementById("cancel-project");
+  const confirmProjectButton = document.getElementById("confirm-project");
 
   const initializeApp = () => {
     if (Projects().projectList().length > 0) {
@@ -78,9 +83,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initializeApp();
 
-  document
-    .getElementById("project-title")
-    .addEventListener("click", Handler().addProjectHandler);
+  addProjectButton.addEventListener("click", () => {
+    addProjectDialog.style.display = "block";
+    projectNameInput.value = "";
+  });
+
+  cancelProjectButton.addEventListener("click", () => {
+    addProjectDialog.style.display = "none";
+  });
+
+  confirmProjectButton.addEventListener("click", () => {
+    const projectName = projectNameInput.value.trim();
+    if (projectName) {
+      Projects().addProject(projectName);
+      domManipulationInstance.renderProjects();
+      addProjectDialog.style.display = "none";
+
+      // Select the newly added project
+      const newProjectIndex = Projects().projectList().length - 1;
+      currentProjectIndex = newProjectIndex;
+      domManipulationInstance.renderTasks(newProjectIndex);
+      domManipulationInstance.updateMainTitle(projectName);
+      unselectAllItems();
+      const newProjectItem = document.querySelector(
+        `.project-item[data-index="${newProjectIndex}"]`
+      );
+      if (newProjectItem) {
+        newProjectItem.classList.add("selected");
+      }
+    } else {
+      alert("Please enter a project name.");
+    }
+  });
+
+  // Close the dialog if the user clicks outside of it
+  window.addEventListener("click", (event) => {
+    if (event.target === addProjectDialog) {
+      addProjectDialog.style.display = "none";
+    }
+  });
 
   document
     .querySelector("#task-title .add-button")

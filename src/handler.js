@@ -9,8 +9,7 @@ export const Handler = () => {
     }
   };
 
-  const addProjectHandler = () => {
-    const title = prompt("Enter project title:");
+  const addProjectHandler = (title) => {
     Projects().addProject(title);
     DOManipulation().renderProjects();
   };
