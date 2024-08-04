@@ -521,3 +521,117 @@ svg {
 #cancel-project:hover {
   background: #e5e7eb;
 }
+
+/* Add task dialog*/
+.dialog-task {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content-task {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  width: clamp(200px, 50%, 400px);
+  height: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dialog-task h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  padding: 15px 0;
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.dialog-content-task > input,
+.dialog-content-task > textarea,
+.dialog-content-task .input-group > input,
+.dialog-content-task .input-group > select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.dialog-content-task > input:focus,
+.dialog-content-task > textarea:focus,
+.dialog-content-task .input-group > input:focus,
+.dialog-content-task .input-group > select:focus {
+  outline: none;
+  border-color: #8e2de2;
+}
+
+.dialog-content-task > textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.input-group > input,
+.input-group > select {
+  flex: 1;
+}
+
+.dialog-buttons-task {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.dialog-buttons-task button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+#cancel-task,
+#cancel-project {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+#cancel-task:hover,
+#cancel-project:hover {
+  background-color: #e0e0e0;
+}
+
+#confirm-task,
+#confirm-project {
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+  color: white;
+}
+
+#confirm-task:hover,
+#confirm-project:hover {
+  background: linear-gradient(45deg, #7928ca, #3700b3);
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4);
+}

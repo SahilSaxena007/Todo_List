@@ -96,5 +96,28 @@
         </div>
       </div>
     </div>
+    <div id="add-task-dialog" class="dialog-task">
+      <div class="dialog-content-task">
+        <h2>Add New Task</h2>
+        <input type="text" id="task-name" placeholder="Enter task name" />
+        <textarea
+          id="task-description"
+          placeholder="Enter task description"
+        ></textarea>
+        <div class="input-group">
+          <input type="date" id="task-date" />
+          <select id="task-priority">
+            <option value="" disabled selected>Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="dialog-buttons-task">
+          <button id="cancel-task">Cancel</button>
+          <button id="confirm-task">Add Task</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

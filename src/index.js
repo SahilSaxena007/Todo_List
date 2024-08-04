@@ -62,6 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelProjectButton = document.getElementById("cancel-project");
   const confirmProjectButton = document.getElementById("confirm-project");
 
+  const addTaskButton = document.querySelector("#task-title .add-button");
+  const addTaskDialog = document.getElementById("add-task-dialog");
+  const taskNameInput = document.getElementById("task-name");
+  const taskDescriptionInput = document.getElementById("task-description");
+  const taskDateInput = document.getElementById("task-date");
+  const taskPrioritySelect = document.getElementById("task-priority");
+  const cancelTaskButton = document.getElementById("cancel-task");
+  const confirmTaskButton = document.getElementById("confirm-task");
+
   const initializeApp = () => {
     if (Projects().projectList().length > 0) {
       domManipulationInstance.renderProjects();
@@ -123,16 +132,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  document
-    .querySelector("#task-title .add-button")
-    .addEventListener("click", () => {
-      if (currentProjectIndex !== null) {
-        Handler().addTaskHandler(currentProjectIndex);
-        console.log("current project index:", currentProjectIndex);
-      } else {
-        console.warn("No project selected to add a task.");
-      }
-    });
+  addTaskButton.addEventListener("click", () => {
+    if (currentProjectIndex !== null) {
+      addTaskDialog.style.display = "flex";
+      taskNameInput.value = "";
+      taskDescriptionInput.value = "";
+      taskDateInput.value = "";
+      taskPrioritySelect.value = "";
+    } else {
+      console.warn("No project selected to add a task.");
+    }
+  });
+
+  cancelTaskButton.addEventListener("click", () => {
+    addTaskDialog.style.display = "none";
+  });
+
+  confirmTaskButton.addEventListener("click", () => {
+    const taskName = taskNameInput.value.trim();
+    const taskDescription = taskDescriptionInput.value.trim();
+    const taskDate = taskDateInput.value;
+    const taskPriority = taskPrioritySelect.value;
+
+    if (taskName && taskDate && taskPriority) {
+      Projects().addTask(
+        taskName,
+        taskDescription,
+        taskDate,
+        taskPriority,
+        currentProjectIndex
+      );
+      domManipulationInstance.renderTasks(currentProjectIndex);
+      addTaskDialog.style.display = "none";
+    } else {
+      alert("Please fill in all required fields.");
+    }
+  });
+
+  // Close the dialog if the user clicks outside of it
+  window.addEventListener("click", (event) => {
+    if (event.target === addTaskDialog) {
+      addTaskDialog.style.display = "none";
+    }
+  });
 
   const unselectAllItems = () => {
     document.querySelectorAll(".project-item, .menu").forEach((item) => {

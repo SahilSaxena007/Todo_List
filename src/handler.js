@@ -39,18 +39,25 @@ export const Handler = () => {
     }
   };
 
-  const addTaskHandler = (projectIndex) => {
-    const title = prompt("What is the title: ");
-    const description = prompt("What is the Description: ");
-    const date = prompt("The date (dd-MM-yyyy): ");
-    const priority = prompt("What is the Priority: ");
-
+  const addTaskHandler = (
+    taskName,
+    taskDescription,
+    taskDate,
+    taskPriority,
+    projectIndex
+  ) => {
     // Log the projects list before adding
     console.log(
       "Before adding task - Project: ",
       Projects().projectList()[projectIndex]
     );
-    Projects().addTask(title, description, date, priority, projectIndex);
+    Projects().addTask(
+      taskName,
+      taskDescription,
+      taskDate,
+      taskPriority,
+      projectIndex
+    );
     console.log(
       "After adding task - Project: ",
       Projects().projectList()[projectIndex]
