@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectNameInput = document.getElementById("project-name");
   const cancelProjectButton = document.getElementById("cancel-project");
   const confirmProjectButton = document.getElementById("confirm-project");
+  const projectDialogHeader = document.querySelector("#add-project-dialog h2");
 
   const addTaskButton = document.querySelector("#task-title .add-button");
   const addTaskDialog = document.getElementById("add-task-dialog");
@@ -70,6 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskPrioritySelect = document.getElementById("task-priority");
   const cancelTaskButton = document.getElementById("cancel-task");
   const confirmTaskButton = document.getElementById("confirm-task");
+  const taskDialogHeader = document.querySelector("#add-task-dialog h2");
+
+  let editingProjectIndex = null;
+  let editingTaskProjectIndex = null;
+  let editingTaskIndex = null;
 
   const initializeApp = () => {
     if (Projects().projectList().length > 0) {
@@ -93,8 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeApp();
 
   addProjectButton.addEventListener("click", () => {
+    editingProjectIndex = null;
     addProjectDialog.style.display = "block";
     projectNameInput.value = "";
+    projectDialogHeader.textContent = "Add Project";
   });
 
   cancelProjectButton.addEventListener("click", () => {
@@ -104,22 +112,15 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmProjectButton.addEventListener("click", () => {
     const projectName = projectNameInput.value.trim();
     if (projectName) {
-      Projects().addProject(projectName);
+      if (editingProjectIndex !== null) {
+        Projects().editProject(projectName, editingProjectIndex);
+        domManipulationInstance.updateMainTitle(projectName, "tool-svg");
+      } else {
+        Projects().addProject(projectName);
+        currentProjectIndex = Projects().projectList().length - 1;
+      }
       domManipulationInstance.renderProjects();
       addProjectDialog.style.display = "none";
-
-      // Select the newly added project
-      const newProjectIndex = Projects().projectList().length - 1;
-      currentProjectIndex = newProjectIndex;
-      domManipulationInstance.renderTasks(newProjectIndex);
-      domManipulationInstance.updateMainTitle(projectName);
-      unselectAllItems();
-      const newProjectItem = document.querySelector(
-        `.project-item[data-index="${newProjectIndex}"]`
-      );
-      if (newProjectItem) {
-        newProjectItem.classList.add("selected");
-      }
     } else {
       alert("Please enter a project name.");
     }
@@ -134,11 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTaskButton.addEventListener("click", () => {
     if (currentProjectIndex !== null) {
+      editingTaskProjectIndex = null;
+      editingTaskIndex = null;
       addTaskDialog.style.display = "flex";
       taskNameInput.value = "";
       taskDescriptionInput.value = "";
       taskDateInput.value = "";
       taskPrioritySelect.value = "";
+      taskDialogHeader.textContent = "Add Task";
     } else {
       console.warn("No project selected to add a task.");
     }
@@ -155,13 +159,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskPriority = taskPrioritySelect.value;
 
     if (taskName && taskDate && taskPriority) {
-      Projects().addTask(
-        taskName,
-        taskDescription,
-        taskDate,
-        taskPriority,
-        currentProjectIndex
-      );
+      if (editingTaskProjectIndex !== null && editingTaskIndex !== null) {
+        Projects().editTask(
+          taskName,
+          taskDescription,
+          taskDate,
+          taskPriority,
+          editingTaskProjectIndex,
+          editingTaskIndex
+        );
+      } else {
+        Projects().addTask(
+          taskName,
+          taskDescription,
+          taskDate,
+          taskPriority,
+          currentProjectIndex
+        );
+      }
       domManipulationInstance.renderTasks(currentProjectIndex);
       addTaskDialog.style.display = "none";
     } else {
@@ -194,7 +209,11 @@ document.addEventListener("DOMContentLoaded", () => {
     currentProjectIndex = parseInt(projectItem.dataset.index);
 
     if (target.classList.contains("edit-svg")) {
-      Handler().editProjectHandler(currentProjectIndex);
+      editingProjectIndex = currentProjectIndex;
+      const projectName = Projects().projectList()[currentProjectIndex].title;
+      projectNameInput.value = projectName;
+      projectDialogHeader.textContent = "Edit Project";
+      addProjectDialog.style.display = "block";
     } else if (target.classList.contains("delete-svg")) {
       Handler().deleteProjectHandler(currentProjectIndex);
     } else {
@@ -208,7 +227,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskIndex = target.closest(".task")?.dataset.index;
 
     if (target.classList.contains("edit-svg")) {
-      Handler().editTaskHandler(projectIndex, taskIndex);
+      editingTaskProjectIndex = projectIndex;
+      editingTaskIndex = taskIndex;
+      const task = Projects().projectList()[projectIndex].tasks[taskIndex];
+      taskNameInput.value = task.title;
+      taskDescriptionInput.value = task.description;
+      taskDateInput.value = task.date;
+      taskPrioritySelect.value = task.priority;
+      taskDialogHeader.textContent = "Edit Task";
+      addTaskDialog.style.display = "flex";
     } else if (target.classList.contains("delete-svg")) {
       Handler().deleteTaskHandler(projectIndex, taskIndex);
     } else if (target.classList.contains("checkbox")) {

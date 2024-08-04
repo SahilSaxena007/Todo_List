@@ -1,5 +1,6 @@
 import "./style.css";
 import Task from "./Tasks";
+import { format } from "date-fns";
 
 function Project(title) {
   const tasks = [];
@@ -9,54 +10,42 @@ function Project(title) {
 // DOM Manipulation is required
 export default function Projects() {
   let projects = [];
+  let today = new Date();
+  const formattedToday = format(today, "dd-MM-yyyy");
 
   if (localStorage.getItem("projects") === null) {
     projects = [
       {
-        title: "Clean House",
-        description: "Make sure that the cupboard is also cleaned",
+        title: "Todo List Introduction",
         tasks: [
           {
-            title: "Brush House",
+            title: "Use Project to track tasks",
             description: "",
-            date: "08-03-2024",
+            date: formattedToday,
             priority: "high",
             projectIndex: 0,
             taskIndex: 0,
             completed: true,
           },
           {
-            title: "Brush House",
-            description: "",
-            date: "08-11-2024",
-            priority: "low",
-            projectIndex: 0,
-            taskIndex: 0,
-            completed: false,
-          },
-        ],
-      },
-      {
-        title: "Finish HomeWork",
-        description: "Constructing the neural networks is remaining.",
-        tasks: [
-          {
-            title: "Coding",
-            description: "",
-            date: "12-04-2024",
-            priority: "High",
+            title: "Set Date and priority for each task",
+            description:
+              "Red is high priority, yellow is medium, and green is low",
+            date: formattedToday,
+            priority: "medium",
             projectIndex: 0,
             taskIndex: 0,
             completed: false,
           },
           {
-            title: "Physics",
-            description: "",
-            date: "12-04-2024",
-            priority: "Low",
+            title: "View compilated list of tasks",
+            description:
+              "The top left menu bar allows you to see the tasks based on time and importance",
+            date: formattedToday,
+            priority: "medium",
             projectIndex: 0,
             taskIndex: 0,
-            completed: true,
+            completed: false,
           },
         ],
       },
@@ -64,27 +53,6 @@ export default function Projects() {
   } else {
     const projectitem = JSON.parse(localStorage.getItem("projects"));
     projects = projectitem;
-
-    // // If projects array is empty, add a default project or show a message
-    // if (projects.length === 0) {
-    //   projects = [
-    //     {
-    //       title: "Default Project",
-    //       description: "This is a default project to get started.",
-    //       tasks: [
-    //         {
-    //           title: "This project appears when you have no projects left",
-    //           description: "This is a default task.",
-    //           date: "12-04-2024",
-    //           priority: "medium",
-    //           projectIndex: 0,
-    //           taskIndex: 0,
-    //           completed: false,
-    //         },
-    //       ],
-    //     },
-    //   ];
-    // }
   }
 
   const saveProjects = () => {
