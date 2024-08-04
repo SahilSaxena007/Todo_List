@@ -24,18 +24,19 @@ export const Handler = () => {
   const deleteProjectHandler = (index) => {
     Projects().deleteProject(index);
     DOManipulation().renderProjects();
-
     // Check if there are remaining projects
     const remainingProjects = Projects().projectList();
-
     if (remainingProjects.length > 0) {
       // Render tasks for the first remaining project
       DOManipulation().renderTasks(0);
-      DOManipulation().updateMainTitle(remainingProjects[0].title);
+      DOManipulation().updateMainTitle(remainingProjects[0].title, "tool-svg");
     } else {
-      // Clear the task container and main title if no projects remain
+      // Clear the task container and select the "All" menu
       DOManipulation().clearTasks();
-      DOManipulation().clearMainTitle();
+      const allTasksMenu = document.querySelector(".menu.all-task");
+      if (allTasksMenu) {
+        allTasksMenu.click();
+      }
     }
   };
 

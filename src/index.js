@@ -144,22 +144,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const list = target.classList;
         let chosenList = [];
+        let menuTitle = "";
+        let menuIconClass = "";
+
         if (list.contains("all-task")) {
           chosenList = taskListRenderer("all-task");
+          menuTitle = "All Tasks";
+          menuIconClass = "month-calendar";
         } else if (list.contains("today-task")) {
           chosenList = taskListRenderer("today-task");
+          menuTitle = "Today's Tasks";
+          menuIconClass = "day-calendar";
         } else if (list.contains("week-task")) {
           chosenList = taskListRenderer("week-task");
+          menuTitle = "This Week's Tasks";
+          menuIconClass = "week-calendar";
         } else if (list.contains("important-task")) {
           chosenList = taskListRenderer("important-task");
+          menuTitle = "Important Tasks";
+          menuIconClass = "important-calendar";
         } else if (list.contains("completed-task")) {
           chosenList = taskListRenderer("completed-task");
+          menuTitle = "Completed Tasks";
+          menuIconClass = "completed-calendar";
         }
 
         domManipulationInstance.renderTaskList(chosenList);
-        domManipulationInstance.updateMainTitle(
-          target.querySelector("p").textContent
-        );
+        domManipulationInstance.updateMainTitle(menuTitle, menuIconClass);
+        domManipulationInstance.toggleAddTaskButton(false);
       } else {
         console.warn("No valid menu item was clicked.");
       }

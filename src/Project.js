@@ -65,26 +65,26 @@ export default function Projects() {
     const projectitem = JSON.parse(localStorage.getItem("projects"));
     projects = projectitem;
 
-    // If projects array is empty, add a default project or show a message
-    if (projects.length === 0) {
-      projects = [
-        {
-          title: "Default Project",
-          description: "This is a default project to get started.",
-          tasks: [
-            {
-              title: "This project appears when you have no projects left",
-              description: "This is a default task.",
-              date: "12-04-2024",
-              priority: "medium",
-              projectIndex: 0,
-              taskIndex: 0,
-              completed: false,
-            },
-          ],
-        },
-      ];
-    }
+    // // If projects array is empty, add a default project or show a message
+    // if (projects.length === 0) {
+    //   projects = [
+    //     {
+    //       title: "Default Project",
+    //       description: "This is a default project to get started.",
+    //       tasks: [
+    //         {
+    //           title: "This project appears when you have no projects left",
+    //           description: "This is a default task.",
+    //           date: "12-04-2024",
+    //           priority: "medium",
+    //           projectIndex: 0,
+    //           taskIndex: 0,
+    //           completed: false,
+    //         },
+    //       ],
+    //     },
+    //   ];
+    // }
   }
 
   const saveProjects = () => {

@@ -4,6 +4,9 @@ export const DOManipulation = () => {
   const projectContainer = document.getElementById("projects");
   const taskContainer = document.getElementById("tasks");
   const mainTitle = document.getElementById("main-title").querySelector("p");
+  const mainTitleImage = document
+    .getElementById("main-title")
+    .querySelector("div");
 
   const renderProjects = () => {
     projectContainer.innerHTML = "";
@@ -25,6 +28,7 @@ export const DOManipulation = () => {
 
   const renderTasks = (projectIndex) => {
     taskContainer.innerHTML = "";
+    toggleAddTaskButton(true);
     const tasks = Projects().projectList()[projectIndex].tasks;
     tasks.forEach((task, index) => {
       const div_container = document.createElement("div");
@@ -50,6 +54,7 @@ export const DOManipulation = () => {
 
   const renderTaskList = (tasks) => {
     taskContainer.innerHTML = "";
+    toggleAddTaskButton(false);
     tasks.forEach((task) => {
       const div_container = document.createElement("div");
       const filled = task[0].completed ? "filled" : "";
@@ -72,11 +77,10 @@ export const DOManipulation = () => {
     });
   };
 
-  const updateMainTitle = (projectName) => {
+  const updateMainTitle = (title, iconClass = "tool-svg") => {
     const div = document.querySelector("#main-title>div");
-    div.classList = [];
-    div.classList.add("tool-svg");
-    mainTitle.textContent = projectName;
+    div.className = iconClass;
+    mainTitle.textContent = title;
   };
 
   const projectClickHandler = (event) => {
@@ -84,8 +88,16 @@ export const DOManipulation = () => {
     if (projectItem) {
       const projectIndex = projectItem.dataset.index;
       const projectName = Projects().projectList()[projectIndex].title;
-      updateMainTitle(projectName);
+      updateMainTitle(projectName, "tool-svg");
       renderTasks(projectIndex);
+      toggleAddTaskButton(true);
+    }
+  };
+
+  const toggleAddTaskButton = (show) => {
+    const addTaskButton = document.querySelector("#task-title .add-button");
+    if (addTaskButton) {
+      addTaskButton.style.display = show ? "block" : "none";
     }
   };
 
