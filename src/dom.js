@@ -44,7 +44,7 @@ export const DOManipulation = () => {
         <div class="task-iconic">
           <div class='edit-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
           <div class='delete-svg' data-project-index="${projectIndex}" data-task-index="${index}"></div>
-          <div class='info-svg'></div>
+          <div class='info-svg' data-project-index="${projectIndex}" data-task-index="${index}></div>
         </div>
       `;
       taskContainer.appendChild(div_container);
@@ -70,7 +70,7 @@ export const DOManipulation = () => {
         <div class="task-iconic">
           <div class='edit-svg' data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
           <div class='delete-svg' data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
-          <div class='info-svg'></div>
+          <div class='info-svg' data-project-index="${task[1]}" data-task-index="${task[2]}"></div>
         </div>
       `;
       taskContainer.appendChild(div_container);

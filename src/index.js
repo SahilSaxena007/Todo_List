@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmTaskButton = document.getElementById("confirm-task");
   const taskDialogHeader = document.querySelector("#add-task-dialog h2");
 
+  // const openInfoButton = document.querySelector('')
+
   let editingProjectIndex = null;
   let editingTaskProjectIndex = null;
   let editingTaskIndex = null;
