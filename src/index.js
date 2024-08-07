@@ -1,5 +1,5 @@
 import "./style.css";
-import { parse, format, getYear, set, add } from "date-fns";
+import { format, add } from "date-fns";
 import { DOManipulation } from "./dom";
 import Projects from "./Project";
 import { Handler } from "./handler";
@@ -8,10 +8,8 @@ import { startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
 const taskListRenderer = (taskChoice) => {
   const projects = Projects().projectList();
   const compiledTaskList = [];
-
   const today = new Date();
   const formattedToday = format(today, "dd-MM-yyyy");
-
   const nextWeekStart = startOfWeek(add(today, { weeks: 1 }), {
     weekStartsOn: 1,
   });
@@ -48,7 +46,6 @@ const taskListRenderer = (taskChoice) => {
     }
   }
 
-  console.log("Compiled Task List:", compiledTaskList);
   return compiledTaskList;
 };
 

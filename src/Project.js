@@ -7,7 +7,6 @@ function Project(title) {
   return { title, tasks };
 }
 
-// DOM Manipulation is required
 export default function Projects() {
   let projects = [];
   let today = new Date();

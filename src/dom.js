@@ -77,6 +77,18 @@ export const DOManipulation = () => {
     });
   };
 
+  function displayTaskInfo(projectIndex, taskIndex) {
+    const task = Projects().projectList()[projectIndex].tasks[taskIndex];
+    const infoDialog = document.getElementById("information-dialog");
+    const titleElement = document.getElementById("title");
+    const descriptionElement = document.getElementById("description");
+
+    titleElement.textContent = task.title;
+    descriptionElement.textContent = task.description;
+
+    infoDialog.style.display = "flex";
+  }
+
   const updateMainTitle = (title, iconClass = "tool-svg") => {
     const div = document.querySelector("#main-title>div");
     div.className = iconClass;

@@ -1,4 +1,3 @@
-import { ta } from "date-fns/locale";
 import { DOManipulation } from "./dom";
 import Projects from "./Project";
 
