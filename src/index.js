@@ -239,6 +239,22 @@ document.addEventListener("DOMContentLoaded", () => {
       Handler().deleteTaskHandler(projectIndex, taskIndex);
     } else if (target.classList.contains("checkbox")) {
       Handler().taskCompletionHandler(projectIndex, taskIndex);
+    } else if (target.classList.contains("info-svg")) {
+      const projectIndex = target.dataset.projectIndex;
+      const taskIndex = target.dataset.taskIndex;
+      domManipulationInstance.displayTaskInfo(projectIndex, taskIndex);
+    }
+  });
+
+  const closeInfoButton = document.getElementById("close-info");
+  closeInfoButton.addEventListener("click", () => {
+    document.getElementById("information-dialog").style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    const infoDialog = document.getElementById("information-dialog");
+    if (event.target === infoDialog) {
+      infoDialog.style.display = "none";
     }
   });
 

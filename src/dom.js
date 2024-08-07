@@ -137,5 +137,6 @@ export const DOManipulation = () => {
     projectClickHandler,
     clearTasks,
     clearMainTitle,
+    displayTaskInfo,
   };
 };
