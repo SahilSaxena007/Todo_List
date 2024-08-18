@@ -10,7 +10,7 @@ function Project(title) {
 export default function Projects() {
   let projects = [];
   let today = new Date();
-  const formattedToday = format(today, "dd-MM-yyyy");
+  const formattedToday = format(today, "yyyy-MM-dd");
 
   if (localStorage.getItem("projects") === null) {
     projects = [

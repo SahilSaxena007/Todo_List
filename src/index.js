@@ -17,7 +17,16 @@ const taskListRenderer = (taskChoice) => {
 
   for (let i = 0; i < projects.length; i++) {
     for (let j = 0; j < projects[i].tasks.length; j++) {
-      const taskDate = new Date(projects[i].tasks[j].date);
+      const taskDateStr = projects[i].tasks[j].date;
+      console.log("Task date string:", taskDateStr);
+      const taskDate = new Date(taskDateStr);
+
+      // Check if the date is valid
+      if (isNaN(taskDate)) {
+        console.error("Invalid date:", taskDateStr);
+        continue; // Skip this task
+      }
+
       const formattedTaskDate = format(taskDate, "dd-MM-yyyy");
       if (taskChoice === "all-task") {
         compiledTaskList.push([projects[i].tasks[j], i, j]);
@@ -27,10 +36,7 @@ const taskListRenderer = (taskChoice) => {
         }
       } else if (taskChoice === "week-task") {
         if (
-          isWithinInterval(taskDate, {
-            start: nextWeekStart,
-            end: nextWeekEnd,
-          })
+          isWithinInterval(taskDate, { start: nextWeekStart, end: nextWeekEnd })
         ) {
           compiledTaskList.push([projects[i].tasks[j], i, j]);
         }
